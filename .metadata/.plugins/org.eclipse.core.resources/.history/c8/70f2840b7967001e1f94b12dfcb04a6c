@@ -1,0 +1,30 @@
+package method;
+
+public class MemberShip {
+	// 회원가입
+
+	private String id = null;
+	private String pw = null;
+	private String name = null;
+	private String phoneNum = null;
+
+	public MemberShip() {
+	}
+	
+	public MemberShip(String id, String pw) {
+		super();
+		this.id = id;
+		this.pw = pw;
+	}
+
+	public MemberShip(String id, String pw, String name, String phoneNum) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.phoneNum = phoneNum;
+	}
+	
+	
+
+}

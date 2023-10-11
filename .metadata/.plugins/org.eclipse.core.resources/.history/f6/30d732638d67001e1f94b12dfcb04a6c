@@ -1,0 +1,73 @@
+package rentalMain;
+
+import java.util.Scanner;
+
+import method.MemberShip;
+import method.Menu;
+import method.UserManager;
+
+public class SpaceRentalMain {
+
+	public static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+
+		boolean stop = false;
+		while (!stop) {
+			Menu.menuPick();
+
+			System.out.printf("선택>>> ");
+			int numOrder = sc.nextInt();
+
+			if (numOrder < 1 || numOrder > 4) {
+				System.out.println("정해진 선택을 하시기 바랍니다");
+			} else {
+				switch (numOrder) {
+				case 1:
+					System.out.printf("============= %d 번 ============\n", numOrder);
+					// 회원가입 memberShip
+//					Menu.menuPick();
+					System.out.println("ID : ");
+					String idName = sc.next();
+					System.out.println("PW : ");
+					String pwnum = sc.next();
+					System.out.println("이름 : ");
+					String name = sc.next();
+					System.out.println("전화번호 : ");
+					String ponNum = sc.next();
+					
+					MemberShip member = MemberShip.membership(idName, pwnum, name, pwnum);
+					UserManager.adduaer(member);
+					
+					break;
+				case 2:
+					System.out.printf("============= %d 번 ============\n", numOrder);
+					// 로그인 login
+					if(UserManager.getLoginuaer() != null) {
+						System.out.println("이미 로그인 되어있습니다.");
+					}else{
+						System.out.println("ID : ");
+						 idName = sc.next();
+						System.out.println("PW : ");
+						 pwnum = sc.next();
+						 if(UserManager.login(idName, pwnum)) {}
+					}
+					break;
+				case 3:
+					System.out.printf("============= %d 번 ============\n", numOrder);
+					// 메뉴보기 menu
+//					
+					break;
+				case 4:
+					System.out.printf("============= %d 번 ============\n", numOrder);
+					System.out.println("end");
+					stop = true;
+					break;
+				}// switch
+			} // else
+
+		} // while
+
+	}// main
+
+}

@@ -1,0 +1,65 @@
+package rentalMain;
+
+import java.util.Scanner;
+
+import method.Menu;
+
+public class SpaceRentalMain {
+
+	public static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+
+		boolean stop = false;
+		while (!stop) {
+			Menu.menuPick();
+
+			System.out.printf("선택>>> ");
+			int numOrder = sc.nextInt();
+
+			if (numOrder < 1 || numOrder > 4) {
+				System.out.println("정해진 선택을 하시기 바랍니다");
+			} else {
+				switch (numOrder) {
+				case 1:
+					System.out.printf("============= %d 번 ============\n", numOrder);
+					// 회원가입 memberShip
+//					Menu.menuPick();
+					System.out.println("ID : ");
+					String idName = sc.next();
+					System.out.println("PW : ");
+					String pwnum = sc.next();
+					System.out.println("이름 : ");
+					String name = sc.next();
+					System.out.println("전화번호 : ");
+					String ponNum = sc.next();
+					
+					
+					break;
+				case 2:
+					System.out.printf("============= %d 번 ============\n", numOrder);
+					// 로그인 login
+//					isLogin = true;
+					break;
+				case 3:
+					System.out.printf("============= %d 번 ============\n", numOrder);
+					// 메뉴보기 menu
+//					if (isLogin) {
+//						
+//					} else {
+//						System.out.println("로그인 후에만 이용가능 합니다.");
+//					}
+					break;
+				case 4:
+					System.out.printf("============= %d 번 ============\n", numOrder);
+					System.out.println("end");
+					stop = true;
+					break;
+				}// switch
+			} // else
+
+		} // while
+
+	}// main
+
+}

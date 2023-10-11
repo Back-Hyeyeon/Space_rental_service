@@ -1,0 +1,41 @@
+package ServiceMenu;
+
+import java.util.Scanner;
+
+import method.MemberShip;
+
+public class ListChoice {
+	
+	public static void showMenu(MemberShip loggedInUser) {
+		Scanner sc = new Scanner(System.in);
+		 System.out.println("1. 계정");
+	        System.out.println("2. 렌탈목록");
+	        System.out.println("3. 구매");
+	        System.out.println("4. 나가기");
+
+	        System.out.printf("선택>>> ");
+	        int numOrder = sc.nextInt();
+
+	        if (numOrder < 1 || numOrder > 4) {
+	            System.out.println("정해진 선택을 하시기 바랍니다");
+	        } else {
+	            switch (numOrder) {
+	                case 1:
+	                    // 계정 메뉴 처리
+	                    // (계정 관련 메뉴 코드를 추가하세요)
+	                    break;
+	                case 2:
+	                    // 렌탈목록 메뉴 처리
+	                    // (렌탈목록 관련 메뉴 코드를 추가하세요)
+	                    break;
+	                case 3:
+	                    // 구매 메뉴 처리
+	                    // (구매 관련 메뉴 코드를 추가하세요)
+	                    break;
+	                case 4:
+	                    System.out.println("나가기");
+	                    break;
+	            }
+	        }
+	    }
+	}

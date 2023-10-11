@@ -1,0 +1,164 @@
+package ServiceMenu;
+
+import java.util.List;
+import java.util.Scanner;
+
+import cartTxt.CaetFileMap;
+import method.MemberShip;
+import method.UserManager;
+
+public class ListChoice {
+	public static Scanner sc = new Scanner(System.in);
+
+	public static void showMenu(MemberShip loggedInUser) {
+		int space = 0;
+		boolean stop = false;
+		while (!stop) {
+			DetailedList();
+			System.out.printf("선택>>> ");
+			int numOrder = sc.nextInt();
+			if (numOrder < 1 || numOrder > 5) {
+				System.out.println("정해진 선택을 하시기 바랍니다");
+			} else {
+				switch (numOrder) {
+				case 1:
+					// 계정 메뉴 처리
+					Memberinformation(loggedInUser);
+					break;
+				case 2:
+					// 대여공간 리스트
+					RentList();
+					System.out.println("S: 15평  |  A: 10평  |  B: 8평  |  C: 5평 ");
+					System.out.println("원하는 크기에 컨테이너 공간을 선택>>");
+					String sizString = sc.next();
+					
+					int choice = 0;
+					switch (sizString) {
+					case "S":
+						System.out.println("렌탈목록을 선택하셨습니다.");
+						System.out.println("1.S1 / 2.S2 / 3.S3 / 4.S4 / 5.S5 / 6.S6 / 7.S7 / 8.S8 / 9.S9 / 10.S10");
+						System.out.println("원하는 컨테이너를 선택하세요: ");
+						choice = sc.nextInt();
+						if (choice >= 1 && choice <= 10) {
+							System.out.printf("렌탈 목록에 %s %d 를 를 저장하였습니다.\n", sizString, choice);
+						} else {
+							System.out.println("올바른 번호를 선택하세요.");
+						}
+						System.out.println("===============================");
+						break;
+					case "A":
+						System.out.println("렌탈목록을 선택하셨습니다.");
+						System.out.println("1.A1 / 2.A2 / 3.A3 / 4.A4 / 5.A5 / 6.A6 / 7.A7 / 8.A8 / 9.A9 / 10.A10");
+						System.out.println("원하는 컨테이너를 선택하세요: ");
+						choice = sc.nextInt();
+						if (choice >= 1 && choice <= 10) {
+							System.out.printf("렌탈 목록에 %s %d 를 를 저장하였습니다.\n", sizString, choice);
+						} else {
+							System.out.println("올바른 번호를 선택하세요.");
+						}
+						System.out.println("===============================");
+						break;
+					case "B":
+						System.out.println("렌탈목록을 선택하셨습니다.");
+						System.out.println("1.B1 / 2.B2 / 3.B3 / 4.B4 / 5.B5 / 6.B6 / 7.B7 / 8.B8 / 9.B9 / 10.B10");
+						System.out.println("원하는 컨테이너를 선택하세요: ");
+						choice = sc.nextInt();
+						if (choice >= 1 && choice <= 10) {
+							System.out.printf("렌탈 목록에 %s %d 를 를 저장하였습니다.\n", sizString, choice);
+						} else {
+							System.out.println("올바른 번호를 선택하세요.");
+						}
+						System.out.println("===============================");
+						break;
+					case "C":
+						System.out.println("렌탈목록을 선택하셨습니다.");
+						System.out.println("1.C1 / 2.C2 / 3.C3 / 4.C4 / 5.C5 / 6.C6 / 7.C7 / 8.C8 / 9.C9 / 10.C10");
+						System.out.println("원하는 컨테이너를 선택하세요: ");
+						choice = sc.nextInt();
+						if (choice >= 1 && choice <= 10) {
+							System.out.printf("렌탈 목록에 %s %d 를 를 저장하였습니다.\n", sizString, choice);
+						} else {
+							System.out.println("올바른 번호를 선택하세요.");
+						}
+						System.out.println("===============================");
+						break;
+					}
+					CaetFileMap.addToCart(sizString);
+					System.out.println("카트에 항목이 추가되었습니다.");
+					System.out.println("===============================");
+					break;
+				case 3:
+					// 장바구니 1.구매목록(수량, 가격)보이게하기 2.구매취소 누르면 취소 되게
+					System.out.println("1.구매목록 2.구매취소 3.exit");
+					System.out.println("===============================");
+					int buy = sc.nextInt();
+					boolean stop1 = false;
+					switch (buy) {
+					case 1:
+						List<String> cartContents = CaetFileMap.readCart();
+			            for (int i = 1; i < cartContents.size(); i++) {
+			                System.out.println((i) + ". " + cartContents.get(i));
+			            }
+						break;
+					case 2:
+						 System.out.print("제거할 항목 번호를 입력하세요: ");
+				            int itemNumber = sc.nextInt();
+				            CaetFileMap.removeFromCart(itemNumber - 1);
+				            System.out.println("카트에서 항목이 제거되었습니다.");
+						break;
+					case 3:
+						stop1 = true;
+						break;
+					}
+					break;
+				case 4:
+					// 영수증
+					break;
+				case 5:
+					System.out.println("나가기");
+					stop = true;
+					break;
+				}
+			}
+		} // while
+	}
+
+	// 계정 나의 정보
+	private static void Memberinformation(MemberShip memberShip) {
+
+		System.out.println("===============================");
+		System.out.println();
+		System.out.println("계정 정보:");
+		System.out.println("ID: " + memberShip.getId());
+		System.out.println("이름: " + memberShip.getName());
+		System.out.println("전화번호: " + memberShip.getPhoneNum());
+		System.out.println();
+		System.out.println("===============================");
+
+	}
+
+	// 세부리스트 목록
+	private static void DetailedList() {
+
+		System.out.println("1. 계정");
+		System.out.println("2. 렌탈서비스");
+		System.out.println("3. 장바구니");
+		System.out.println("4. 영수증");
+		System.out.println("5. 나가기");
+		System.out.println("===============================");
+
+	}
+
+	// 대여공간 리스트
+	private static void RentList() {
+		System.out.println("===============================");
+		System.out.println("1.S: 15평  |  2.A: 10평  |  3.B: 8평  |  4.C: 5평 ");
+		System.out.println("===============================");
+		System.out.println("s : S1 S2 S3 S4 S5 S6 S7 S8 S9 S10");
+		System.out.println("A : A1 A2 A3 A4 A5 A6 A7 A8 A9 A10");
+		System.out.println("B : B1 B2 B3 B4 B5 B6 B7 B8 B9 B10");
+		System.out.println("C : C1 C2 C3 C4 C5 C6 C7 C8 C9 C10");
+		System.out.println("===============================");
+	}
+
+}
